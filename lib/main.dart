@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(PointerCounter());
+  runApp(const PointerCounter());
 }
 
 class PointerCounter extends StatelessWidget {
@@ -14,7 +14,7 @@ class PointerCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CounterCubit(),
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: HomePage(),
       ),
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<CounterCubit, CounterState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -40,9 +40,7 @@ class HomePage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              const Spacer(
-                flex: 1,
-              ),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -54,26 +52,22 @@ class HomePage extends StatelessWidget {
                       ),
                       Text(
                         '${BlocProvider.of<CounterCubit>(context).TeamAPointes}',
-                        style: TextStyle(fontSize: 180),
+                        style: const TextStyle(fontSize: 180),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                             minimumSize: const Size(150, 50)),
                         onPressed: () {
-                          BlocProvider.of<CounterCubit>(context).teamIncrement(
-                              team: 'A',
-                              buttonNumber:
-                                  1); // BlocProvider.of<CounterCubit>(context)
+                          BlocProvider.of<CounterCubit>(context)
+                              .teamIncrement(team: 'A', buttonNumber: 1);
                         },
                         child: const Text(
                           'Add 1 Point',
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
@@ -87,9 +81,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
@@ -120,7 +112,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Text(
                         '${BlocProvider.of<CounterCubit>(context).TeamBPointes}',
-                        style: TextStyle(fontSize: 180),
+                        style: const TextStyle(fontSize: 180),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -135,9 +127,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
@@ -151,9 +141,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
@@ -171,9 +159,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 45,
-              ),
+              const SizedBox(height: 45),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
@@ -187,9 +173,7 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
-              const Spacer(
-                flex: 2,
-              ),
+              const Spacer(),
             ],
           ),
         );
